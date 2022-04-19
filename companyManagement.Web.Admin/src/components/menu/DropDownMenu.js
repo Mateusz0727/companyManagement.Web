@@ -18,6 +18,7 @@ export const DropdownMenu = () => {
           <span>User</span>
           <img className="avatar"
             src={avatar}
+            alt="avatar"
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
               currentTarget.src={avatar};
@@ -33,10 +34,10 @@ export const DropdownMenu = () => {
               <a href="#">Messages</a>
             </li>
             <li>
-              <a href="/account">Profil</a>
+              <a href="/account">Profile</a>
             </li>
             <li>
-              <a href="/" onClick={logOut}>Wyloguj</a>
+              <a href="/" onClick={logOut}>Logout</a>
             </li>
           </ul>
         </nav>

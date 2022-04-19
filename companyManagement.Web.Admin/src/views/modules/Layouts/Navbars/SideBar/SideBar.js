@@ -11,9 +11,7 @@ import { Link } from "react-router-dom";
 export default function Sidebar() {
     function SidebarOption({ text, name,route, tag }) {
         return (
-        //     <Link to={"/orders"} className="nav-link">
-        //     Zamówienia
-        //   </Link>
+        
           <Link className="sidebar-option" to={"/"+route}>
            
               <Icon className="sidebar-icon" component={name} size="small" />
@@ -30,7 +28,7 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <SidebarOption text="Home" name={HomeOutlined} route="dashboard" />
-      <SidebarOption text="Profil" name={UserOutlined} route="account"/>
+      <SidebarOption text="Profile" name={UserOutlined} route="account"/>
       <SidebarOption text="Messages" name={MessageOutlined} />
      
     </div>

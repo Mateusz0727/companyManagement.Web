@@ -1,16 +1,22 @@
-import React from "react";
-import { Route,Routes } from "react-router";
-import Profile from "../Account/Profile";
-import Home from "../Dashboard/Dashboard";
+import React, { Component } from "react";
+import AdminRoutes from "../../../plugins/Routes/AdminRoutes";
+import BasicRoutes from "../../../plugins/Routes/BasicRoutes";
 
-const EmptyLayout = () => {
-    return(
-    <div >
-        <Routes>
-            <Route exact path="/dashboard" element={<Home/>}/>           
-            <Route path="/account" element={<Profile/>}/>            
-        </Routes>
-    </div>
-    );
+const AuthorizationContext  = React.createContext();
+class EmptyLayout extends Component {
+    constructor(props) {
+        super(props);
+       
+      }
+   
+    render(){
+        const IsAdmin = this.props.IsAdmin;
+        return(
+            <AuthorizationContext.Provider value={IsAdmin}>
+                {!!IsAdmin ? <AdminRoutes /> : <BasicRoutes />}
+            </AuthorizationContext.Provider>
+        );
+    }
+   
 }
 export default EmptyLayout;

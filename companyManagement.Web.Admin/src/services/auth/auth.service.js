@@ -1,5 +1,4 @@
 import axios from "axios";
-import authHeader from "./auth.header";
 
 const login =(email,password)=>{
     return axios.post(process.env.REACT_APP_API_URL+"/auth/login",{

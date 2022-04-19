@@ -7,8 +7,10 @@
     box-sizing: border-box;
     font-family: "Poppins",sans-serif;
 }
-.wrapper{
-    display: flex;
+.wrapper{    
+    display: block;
+    height: 100%;
+    position: relative;
 }
 .wrapper .section{
     position: fixed;
@@ -16,4 +18,30 @@
     margin-left: 225px;
     transition: all 0.5s ease;
     height: 100%;
+}
+.wrapper .module-content{
+    width: 100%;
+    display: flex;
+    position: absolute;  
+    height: 100%;
+}
+
+.navigate-button{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    bottom: 10px;
+    left: 10px;
+    position: absolute;
+ 
+   
+}
+.navigate-button button{
+    padding: 5px;
+    border: none;
+    box-shadow: 0 0 10px #ada9a9;
+
+} 
+ button .edit{
+    width: 60px;
 }
