@@ -9,7 +9,7 @@ const AdminRoutes = () => {
   
   return (
     <Routes>
-        <Route exact path="/dashboard" element={<Home/>}/>           
+        <Route  path="/dashboard" element={<Home/>}/>           
         <Route path="/account" element={<Profile/>}/>             
         <Route path="/account/edit" element={<EditProfile/>}/>          
     </Routes>

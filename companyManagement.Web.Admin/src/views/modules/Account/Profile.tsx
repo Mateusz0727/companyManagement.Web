@@ -1,5 +1,5 @@
-import profileService from "../../../services/account/profile.service";
-import React, { useState, useEffect } from "react";
+import profileService, { ProfileModel } from "../../../services/account/profile.service";
+import React, { useState, useEffect, Component } from "react";
 
 import { useNavigate } from "react-router-dom";
 import avatar from '../../../assets/avatar.png';
@@ -10,21 +10,39 @@ import Icon, {
  
   
 } from "@ant-design/icons";
-const Profile = (props) => {
-    const [profile, setProfile] = useState([]);
-    const navigate = useNavigate();
+import Form from "../../../helpers/Form";
+import ProfileService from "../../../services/account/profile.service";
+class Profile extends Component{
+    private form: Form<ProfileModel> = Form.create<ProfileModel>({
+      id:'',
+      userName:'',
+      fullName:'',
+      FirstName:'',
+      SecondNAme:'',
+      PhoneNumber:'',
+      PhoneNumberConfirmed:false,
+      Email:'',
+      EmailConfirmed:false,
+      IsAdmin:false,
+      Image:'',
+    });
    
-    useEffect(() => {
-      profileService.fetch().then(
-        (response) => {
-            setProfile(response);
-            
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    }, []);
+   
+  
+    async loadData(){
+      try{
+       const response = await ProfileService.fetch();
+        this.form.withData(response.result);
+      }
+      catch (ex)
+      {
+          console.log(ex);
+       
+         
+      }
+    }
+    render(): React.ReactNode {
+      
     
     return(
    
@@ -33,13 +51,13 @@ const Profile = (props) => {
 
           
             <div className="profile-image">
-                <img src={profile.image ? profile.image+'?'+Date.now() : avatar} alt="image"/>
+                {/* <img src={profile.image ? profile.image+'?'+Date.now() : avatar} alt="image"/> */}
               
             </div>
             <div className="profile-card">
               <div className="profile-header">
-                <h2>{profile.firstName }  {profile.secondName}</h2>
-                <h4>{profile.profession}Web dev</h4>
+                <h2>{this.form.firstName }  {this.form.secondName}</h2>
+                <h4>{this.form.profession}Web dev</h4>
               </div>
               <div className="profile-details">
                   <div  className="headers">
@@ -70,28 +88,28 @@ const Profile = (props) => {
                   </div>
                   <div className="profile-information">
                     <div>
-                      <h5>{profile.firstName}  {profile.secondName}</h5>
+                      <h5>{this.form.firstName}  {this.form.secondName}</h5>
                     </div>
                     <div >
-                      <h5>{profile.email}</h5>
+                      <h5>{this.form.email}</h5>
                     </div>
                     <div >
-                      <input type="checkbox" checked={profile.emailConfirmed}  disabled="disabled"/>
+                      <input type="checkbox" checked={this.form.emailConfirmed || false}  disabled={true}/>
                     </div>
                     <div >
-                       <h5>{profile.phoneNumber}</h5>
+                       <h5>{this.form.phoneNumber}</h5>
                     </div>                   
                     <div >
-                      <input type="checkbox" checked={profile.phoneNumberConfirmed} disabled="disabled"/>
+                      <input type="checkbox" checked={this.form.phoneNumberConfirmed || false} disabled={true}/>
                     </div>                   
                     <div >
-                      <h5>{profile.profession}</h5>
+                      <h5>{this.form.profession}</h5>
                     </div>                  
                     <div >
-                      <h5>{profile.company}</h5>
+                      <h5>{this.form.company}</h5>
                     </div>                  
                     <div >
-                        <h5>{profile.about}</h5>
+                        <h5>{this.form.about}</h5>
                     </div>
                   
                   </div>
@@ -100,11 +118,11 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="navigate-button">
-            <button onClick={()=>navigate(-1)}><Icon component={ArrowLeftOutlined} size="small" /> Back</button>
+            {/* <button onClick={()=>navigate(-1)}><Icon component={ArrowLeftOutlined} size="small" /> Back</button>
             {
               profile.isAdmin? <button onClick={()=>navigate("/account/edit")}><Icon component={EditOutlined} size="small" />Edit</button>:<div></div>          
             }
-         
+          */}
           </div>
         
         </div>
@@ -114,5 +132,6 @@ const Profile = (props) => {
     
    
     );
+}
 }
 export default Profile;
