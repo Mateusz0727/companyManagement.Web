@@ -8,7 +8,7 @@ export default class TopNavBar extends Component {
       return (
         <div className="topNavBar">
             
-            <DropdownMenu/>
+            <DropdownMenu />
             
          
         </div>

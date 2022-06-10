@@ -14,7 +14,7 @@ export default function Sidebar() {
         
           <Link className="sidebar-option" to={"/"+element.route}>
            
-              <Icon className="sidebar-icon" component={element.name} size="small" />
+          
               <h2>{element.text}</h2>
           
           </Link>
@@ -27,13 +27,13 @@ export default function Sidebar() {
 
   return (
     <div className="sidebar">
-      <SidebarOption text="Home" name={HomeOutlined} route="dashboard" />
-      <SidebarOption text="Profile" name={UserOutlined} route="account"/>
-      <SidebarOption text="Messages" name={MessageOutlined} />
+      <SidebarOption text="Home"  route="dashboard" />
+      <SidebarOption text="Profile"  route="account"/>
+      <SidebarOption text="Messages"  />
      
     </div>
   );
 }
 export interface SideBarInterface{
-  text:string, name:string,route?:string
+  text:string, name?:string,route?:string
 }

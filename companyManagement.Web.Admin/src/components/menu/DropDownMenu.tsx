@@ -1,5 +1,5 @@
 
-import React,{useRef} from "react";
+import React,{useRef, useState} from "react";
 import { useDetectOutsideClick } from "../useDetectOutsideClick";
 import './dropDownMenu.css';
 
@@ -7,8 +7,9 @@ import authService from "../../services/auth/auth.service";
 import avatar from '../../assets/avatar.png'
 export const DropdownMenu = () => {
   const dropdownRef = useRef(null);
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
-  const onClick = () => setIsActive(isActive);
+  let [isActive, setIsActive] = useState(false);
+  function expand(){setIsActive(true)};
+  function close(){setIsActive(false)};
   const logOut = () => {
     authService.logout();
   };
@@ -16,7 +17,7 @@ export const DropdownMenu = () => {
   return (
     <div className="container">
       <div className="menu-container">
-        <button onClick={onClick} className="menu-trigger">
+        <button onFocus={expand} onBlur={close} className="menu-trigger">
           <span>User</span>
           <img className="avatar"
             src={avatar}

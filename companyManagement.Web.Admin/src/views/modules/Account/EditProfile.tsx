@@ -3,13 +3,7 @@ import { useNavigate } from "react-router-dom";
 import profileService from "../../../services/account/profile.service";
 import avatar from '../../../assets/avatar.png';
 import './Profile.css';
-import Icon, {
- 
-  SaveOutlined ,
-  ArrowLeftOutlined ,
-  CheckOutlined
-  
-} from "@ant-design/icons";
+
 const EditProfile = () => {
 
     // const [profileImage, setProfileImage] = useState(null);
@@ -66,9 +60,9 @@ return(
       </div>
           
            <div className="navigate-button">
-            <button onClick={()=>navigate(-1)}><Icon component={ArrowLeftOutlined} size="small" />Back</button>
-            <button onClick={()=>navigate("/account")}><Icon component={SaveOutlined} size="small" />Save</button>
-            <button onClick={()=>saveAndBack()}><Icon component={CheckOutlined} size="small" />Save and back</button>
+            <button onClick={()=>navigate(-1)}>Back</button>
+            <button onClick={()=>navigate("/account")}>Save</button>
+            <button onClick={()=>saveAndBack()}>Save and back</button>
            </div>
          </div>
 )
